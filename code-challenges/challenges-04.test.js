@@ -56,6 +56,13 @@ Return an array containing all the matches.
 
 const isCapitalized = (str) => {
   // Solution code here...
+  let regex = /[A-Z]\w+/g
+  let match = str.match(regex);
+  if(match){
+    return match;
+  } else {
+    return [];
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -66,6 +73,14 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 
 const citiesAtoJ = (arr) => {
   // Solution code here...
+  let regEx = /^[A-J]/g;
+  let cityArray = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].match(regEx)) {
+      cityArray.push(arr[i]);
+    }
+  }
+  return cityArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -82,6 +97,8 @@ Do not use the vertical bar (pipe) in your pattern.
 
 const matchMonth = (input) => {
   // Solution code here...
+  var regex = /\b[oO]ct(ober)?\b/g
+  return regex.test(input);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -96,6 +113,8 @@ The expected output of "Hello, and have a wonderful day!" is ["and ", "have ", "
 
 const noPunctuation = str => {
   // Solution code here...
+  var regex = /\b\w+\s/gi;
+  return str.match(regex)
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -190,7 +209,7 @@ describe('Testing challenge 4', () => {
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should match any of the acceptable inputs', () => {
     expect(matchMonth('Oct')).toBeTruthy();
     expect(matchMonth('oct')).toBeTruthy();
@@ -208,7 +227,7 @@ xdescribe('Testing challenge 5', () => {
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia vel massa sed egestas. Nunc faucibus iaculis elit, a scelerisque enim condimentum sed. Aenean ac scelerisque sem, et pharetra diam.';
 
   test('It should only return words that are immediately followed by a space', () => {
